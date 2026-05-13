@@ -1,0 +1,151 @@
+/*
+ * ============================================================
+ *  Global Button Polish — glow, scale, cursor for all buttons
+ * ============================================================
+ *
+ *  Rules are ordered from generic → specific so Tailwind
+ *  utility classes still win when they are more specific.
+ *
+ *  Strategy:
+ *    1.  Every <button> and <a> acting as a button gets
+ *        cursor:pointer + smooth transition.
+ *    2.  Colour-specific glow is inferred from Tailwind
+ *        background classes already on the element.
+ *    3.  Disabled states never scale or glow.
+ * ============================================================
+ */
+
+/* ── 1. Universal interactive baseline ───────────────────── */
+button,
+a[href],
+[role="button"] {
+  cursor: pointer;
+  transition:
+    transform 150ms ease,
+    box-shadow 150ms ease,
+    background-color 150ms ease,
+    border-color 150ms ease,
+    color 150ms ease,
+    opacity 150ms ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+button:disabled,
+button[disabled],
+[role="button"][aria-disabled="true"] {
+  cursor: not-allowed;
+  pointer-events: auto; /* keep disabled visual, allow hover to reset */
+}
+
+/* ── 2. Blue / Indigo primary buttons ────────────────────── */
+/*  Tailwind classes: bg-blue-600, bg-blue-700, bg-indigo-600 */
+button.bg-blue-600,
+button.bg-blue-700,
+button.bg-indigo-600,
+a.bg-blue-600,
+a.bg-blue-700,
+a.bg-indigo-600 {
+  &:not(:disabled):hover {
+    transform: scale(1.03);
+    box-shadow: 0 0 18px rgba(99, 102, 241, 0.55);
+  }
+  &:not(:disabled):active {
+    transform: scale(0.96);
+    box-shadow: 0 0 8px rgba(99, 102, 241, 0.3);
+  }
+}
+
+/* ── 3. Outlined / ghost buttons ─────────────────────────── */
+/*  Tailwind classes: border-slate-300, border-slate-200,
+    border-blue-400, hover:bg-slate-50, hover:bg-blue-50       */
+button:not([class*="bg-"]):not(:disabled),
+button.border-slate-300:not(:disabled),
+button.border-slate-200:not(:disabled) {
+  &:hover {
+    transform: scale(1.03);
+    box-shadow: 0 0 12px rgba(99, 102, 241, 0.22);
+    border-color: rgba(99, 102, 241, 0.45);
+    color: rgb(79, 70, 229);
+    background-color: rgba(99, 102, 241, 0.05);
+  }
+  &:active {
+    transform: scale(0.96);
+    box-shadow: none;
+  }
+}
+
+/* ── 4. Green / success buttons ──────────────────────────── */
+button.bg-green-600,
+button.bg-green-700,
+a.bg-green-600 {
+  &:not(:disabled):hover {
+    transform: scale(1.03);
+    box-shadow: 0 0 16px rgba(22, 163, 74, 0.5);
+  }
+  &:not(:disabled):active {
+    transform: scale(0.96);
+    box-shadow: none;
+  }
+}
+
+/* ── 5. Red / danger buttons ─────────────────────────────── */
+button.bg-red-600,
+button.border-red-200,
+button.text-red-600 {
+  &:not(:disabled):hover {
+    transform: scale(1.03);
+    box-shadow: 0 0 14px rgba(220, 38, 38, 0.4);
+  }
+  &:not(:disabled):active {
+    transform: scale(0.96);
+    box-shadow: none;
+  }
+}
+
+/* ── 6. Sidebar / nav link buttons ──────────────────────── */
+/*  These are usually full-width flex rows with no bg class   */
+button.w-full.flex.items-center:not(:disabled) {
+  &:hover {
+    transform: translateX(4px) scale(1.01);
+    box-shadow: 2px 0 10px rgba(99, 102, 241, 0.15);
+  }
+  &:active {
+    transform: translateX(2px) scale(0.99);
+    box-shadow: none;
+  }
+}
+
+/* ── 7. Icon-only / round buttons ────────────────────────── */
+button.rounded-full:not(:disabled) {
+  &:hover {
+    transform: scale(1.12);
+    box-shadow: 0 0 12px rgba(99, 102, 241, 0.4);
+  }
+  &:active {
+    transform: scale(0.92);
+    box-shadow: none;
+  }
+}
+
+/* ── 8. Anchor links styled as buttons ───────────────────── */
+a.px-4,
+a.px-5,
+a.px-6 {
+  &:hover {
+    transform: scale(1.03);
+  }
+  &:active {
+    transform: scale(0.96);
+  }
+}
+
+/* ── 9. Prevent any glow/scale on disabled states ────────── */
+button:disabled:hover,
+button[disabled]:hover,
+[role="button"][aria-disabled="true"]:hover {
+  transform: none !important;
+  box-shadow: none !important;
+  border-color: initial;
+  color: initial;
+  background-color: initial;
+}
