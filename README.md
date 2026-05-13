@@ -97,4 +97,54 @@ SmartHireX is an AI-powered, full-stack recruitment platform connecting candidat
 - **Supabase Integration:** User roles (Candidate vs. Recruiter) are stored securely in Supabase user metadata, governing routing and access control to specific platform sections.
 
 ---
+
+## 🔄 Platform Workflow
+
+```mermaid
+flowchart TD
+    A([👤 User Visits SmartHireX]) --> B[/Login / Sign Up/]
+    B --> C{Authentication\nvia Supabase OAuth}
+    C -- ❌ Failed --> B
+    C -- ✅ Success --> D{Check User Role}
+
+    D -- 🎓 Candidate --> E[Candidate Dashboard]
+    D -- 🏢 Recruiter --> F[Recruiter Dashboard]
+
+    %% Candidate Flow
+    E --> G[📄 Upload Resume\nPDF / DOCX]
+    G --> H[Flask Backend\nResume Parser]
+    H --> I[NLP Pipeline\nPyMuPDF · python-docx]
+    I --> J[Extract Skills,\nKeywords & Experience]
+    J --> K[TF-IDF Matcher\nscikit-learn]
+    K --> L[Google Gemini AI\nSuggestions & Insights]
+    L --> M[📊 ATS Score +\nResume Report]
+    M --> N[🔍 Job Recommendations\n325+ Roles Dataset]
+    N --> O[🛠️ Resume Builder]
+    O --> P[📤 Apply to Jobs /\nTrack Applications]
+
+    %% Recruiter Flow
+    F --> Q[📋 View All Candidates]
+    Q --> R[📈 Analytics Dashboard\nRecharts Visualizations]
+    R --> S[🧪 Evaluate Candidates]
+    S --> T[Compare Resumes\nvs Job Description]
+    T --> U[✅ Shortlist /\n❌ Reject Candidates]
+
+    %% Shared DB
+    M --> DB[(Supabase\nPostgreSQL)]
+    P --> DB
+    U --> DB
+    DB --> Q
+    DB --> E
+
+    style A fill:#6366f1,color:#fff,stroke:#4f46e5
+    style C fill:#f59e0b,color:#fff,stroke:#d97706
+    style D fill:#8b5cf6,color:#fff,stroke:#7c3aed
+    style E fill:#10b981,color:#fff,stroke:#059669
+    style F fill:#3b82f6,color:#fff,stroke:#2563eb
+    style DB fill:#1e293b,color:#fff,stroke:#334155
+    style M fill:#f43f5e,color:#fff,stroke:#e11d48
+    style N fill:#06b6d4,color:#fff,stroke:#0891b2
+```
+
+---
 *Built to make hiring smarter, faster, and more effective.*
