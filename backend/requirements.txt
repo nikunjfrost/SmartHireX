@@ -8,3 +8,4 @@ python-docx
 google-generativeai
 requests
 gunicorn==21.2.0
+supabase
