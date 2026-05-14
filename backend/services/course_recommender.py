@@ -105,4 +105,4 @@ def get_course_recommendations(missing_skills):
                 })
                 seen_links.add(dynamic_link)
 
-    return recommendations[:5]  # Limit to top 5 recommendations to keep UI clean
+    return recommendations[:]  # Limit to top 5 recommendations to keep UI clean
