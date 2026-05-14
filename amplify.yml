@@ -4,17 +4,19 @@ frontend:
     preBuild:
       commands:
         - START_DIR=$(pwd)
-        - if [ -d "frontend" ]; then cd frontend; elif [ -d "SmartHireX Website Frontend" ]; then cd "SmartHireX Website Frontend"; fi
+        - if [ -d "SmartHireX Website Frontend" ]; then cd "SmartHireX Website Frontend"; fi
+        - rm -rf /tmp/safe_build && cp -R . /tmp/safe_build
+        - cd /tmp/safe_build
         - npm install --no-audit
     build:
       commands:
-        - if [ -d "frontend" ]; then cd frontend; elif [ -d "SmartHireX Website Frontend" ]; then cd "SmartHireX Website Frontend"; fi
+        - cd /tmp/safe_build
         - npm run build
-        - cp -r dist $START_DIR/.amplify-dist
+        - cp -R dist $START_DIR/.amplify-dist
   artifacts:
     baseDirectory: .amplify-dist
     files:
       - "**/*"
   cache:
     paths:
-      - "**/node_modules/**/*"
+      - "/tmp/safe_build/node_modules/**/*"
