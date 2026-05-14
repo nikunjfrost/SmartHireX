@@ -4,15 +4,15 @@ frontend:
     preBuild:
       commands:
         - if [ -d "SmartHireX Website Frontend" ]; then cd "SmartHireX Website Frontend"; fi
+        - echo "$(pwd)" > /tmp/original_dir
         - rm -rf /tmp/safe_build && cp -R . /tmp/safe_build
         - cd /tmp/safe_build
         - npm install --no-audit
     build:
       commands:
-        - START_DIR="$(pwd)"
         - cd /tmp/safe_build
         - npm run build
-        - cp -R dist "$START_DIR/dist"
+        - cp -R dist "$(cat /tmp/original_dir)/dist"
   artifacts:
     baseDirectory: dist
     files:
