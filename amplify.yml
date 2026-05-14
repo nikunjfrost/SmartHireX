@@ -3,11 +3,9 @@ frontend:
   phases:
     preBuild:
       commands:
-        - cd frontend
         - npm install --no-audit
     build:
       commands:
-        - cd frontend
         - npm run build
   artifacts:
     baseDirectory: frontend/dist
@@ -15,4 +13,4 @@ frontend:
       - "**/*"
   cache:
     paths:
-      - frontend/node_modules/**/*
+      - node_modules/**/*
