@@ -3,16 +3,18 @@ frontend:
   phases:
     preBuild:
       commands:
-        - cd frontend
+        - echo "$(pwd)" > /tmp/original_dir
+        - if [ -d "frontend" ]; then cd frontend; fi
         - npm install --no-audit
     build:
       commands:
-        - cd frontend
+        - if [ -d "frontend" ]; then cd frontend; fi
         - npm run build
+        - cp -R dist "$(cat /tmp/original_dir)/dist"
   artifacts:
-    baseDirectory: frontend/dist
+    baseDirectory: dist
     files:
       - "**/*"
   cache:
     paths:
-      - frontend/node_modules/**/*
+      - "**/node_modules/**/*"
