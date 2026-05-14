@@ -135,7 +135,7 @@ def review_resume():
         
     try:
         genai.configure(api_key=api_key)
-        model = genai.GenerativeModel('gemini-flash-latest')
+        model = genai.GenerativeModel('gemini-1.5-flash')
         
         prompt = f"""
         You are an expert technical recruiter and resume reviewer.
