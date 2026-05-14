@@ -151,4 +151,5 @@ def review_resume():
         response = model.generate_content(prompt)
         return jsonify({"review": response.text}), 200
     except Exception as e:
+        print(f"DEBUG: AI Review Error: {str(e)}")
         return jsonify({"error": str(e)}), 500
