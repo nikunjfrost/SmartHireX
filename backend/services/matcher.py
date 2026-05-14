@@ -1,6 +1,6 @@
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
-from backend.services.nlp_pipeline import extract_skills_and_keywords
+from services.nlp_pipeline import extract_skills_and_keywords
 
 def find_keyword_gaps(resume_text, jd_text):
     """

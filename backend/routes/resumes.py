@@ -1,16 +1,16 @@
 from flask import Blueprint, request, jsonify, current_app
 import os
 from werkzeug.utils import secure_filename
-from backend.utils.file_handler import allowed_file
-from backend.services.analyzer import analyze_resume
-from backend.services.extractor import extract_resume_text
-from backend.services.ats_scorer import calculate_ats_score
-from backend.services.matcher import find_keyword_gaps
-from backend.services.suggestions import generate_suggestions
-from backend.services.probability_predictor import predict_hiring_probability
-from backend.services.nlp_pipeline import extract_skills_and_keywords
-from backend.services.job_matcher import find_matching_roles
-from backend.services.course_recommender import get_course_recommendations
+from utils.file_handler import allowed_file
+from services.analyzer import analyze_resume
+from services.extractor import extract_resume_text
+from services.ats_scorer import calculate_ats_score
+from services.matcher import find_keyword_gaps
+from services.suggestions import generate_suggestions
+from services.probability_predictor import predict_hiring_probability
+from services.nlp_pipeline import extract_skills_and_keywords
+from services.job_matcher import find_matching_roles
+from services.course_recommender import get_course_recommendations
 
 
 resumes_bp = Blueprint('resumes', __name__)
@@ -272,7 +272,7 @@ def compare_multiple_jds():
         
     try:
         resume_text = extract_resume_text(filepath)
-        from backend.services.matcher import calculate_match_score
+        from services.matcher import calculate_match_score
         
         results = []
         for job in jobs:

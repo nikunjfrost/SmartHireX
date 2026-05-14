@@ -1,6 +1,6 @@
 from flask import Blueprint, request, jsonify
-from backend.services.jd_processor import process_job_description
-from backend.services.job_aggregator import aggregate_jobs
+from services.jd_processor import process_job_description
+from services.job_aggregator import aggregate_jobs
 
 jobs_bp = Blueprint('jobs', __name__)
 
@@ -48,7 +48,7 @@ def recommend_jobs():
         skills = [s.strip() for s in skills_param.split(',') if s.strip()]
         
     try:
-        from backend.services.job_matcher import find_matching_roles
+        from services.job_matcher import find_matching_roles
         import urllib.parse
         
         recommended_roles = find_matching_roles(skills, top_n=5)

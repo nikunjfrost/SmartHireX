@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, request
-from backend.utils.supabase_client import supabase
+from utils.supabase_client import supabase
 
 candidates_bp = Blueprint('candidates', __name__)
 

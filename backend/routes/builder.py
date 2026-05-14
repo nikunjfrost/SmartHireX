@@ -4,7 +4,7 @@ from docx import Document
 import os
 import google.generativeai as genai
 from dotenv import load_dotenv
-from backend.services.dataset_loader import JOB_ROLES
+from services.dataset_loader import JOB_ROLES
 
 builder_bp = Blueprint('builder', __name__)
 

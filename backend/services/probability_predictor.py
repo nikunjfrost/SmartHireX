@@ -11,11 +11,11 @@ v2 improvements:
 """
 
 import re
-from backend.services.matcher import calculate_match_score
-from backend.services.ats_scorer import calculate_ats_score
-from backend.services.nlp_pipeline import extract_skills_and_keywords
-from backend.services.job_matcher import find_matching_roles
-from backend.services.dataset_loader import JOB_ROLES
+from services.matcher import calculate_match_score
+from services.ats_scorer import calculate_ats_score
+from services.nlp_pipeline import extract_skills_and_keywords
+from services.job_matcher import find_matching_roles
+from services.dataset_loader import JOB_ROLES
 
 
 def _parse_experience_years(text: str) -> int:

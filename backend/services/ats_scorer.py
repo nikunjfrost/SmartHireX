@@ -1,5 +1,5 @@
 import re
-from backend.services.matcher import calculate_match_score
+from services.matcher import calculate_match_score
 
 def calculate_ats_score(resume_text, jd_text=""):
     """
@@ -13,7 +13,7 @@ def calculate_ats_score(resume_text, jd_text=""):
     if not resume_text:
         return {"total_score": 0, "breakdown": {}}
 
-    from backend.services.nlp_pipeline import extract_skills_and_keywords, group_skills_by_category
+    from services.nlp_pipeline import extract_skills_and_keywords, group_skills_by_category
 
     total_score = 0.0
     breakdown = {}

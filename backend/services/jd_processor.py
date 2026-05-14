@@ -1,4 +1,4 @@
-from backend.services.nlp_pipeline import extract_skills_and_keywords
+from services.nlp_pipeline import extract_skills_and_keywords
 
 def process_job_description(jd_text):
     """

@@ -11,9 +11,9 @@ v2 improvements over the original:
 """
 
 import re
-from backend.services.matcher import find_keyword_gaps
-from backend.services.nlp_pipeline import extract_skills_and_keywords, group_skills_by_category, get_skill_category
-from backend.services.job_matcher import find_matching_roles, get_required_skills_for_role
+from services.matcher import find_keyword_gaps
+from services.nlp_pipeline import extract_skills_and_keywords, group_skills_by_category, get_skill_category
+from services.job_matcher import find_matching_roles, get_required_skills_for_role
 
 # Core categories expected in a well-rounded tech resume
 _TECH_CATEGORIES = {

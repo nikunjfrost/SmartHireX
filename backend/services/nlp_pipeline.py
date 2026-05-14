@@ -14,7 +14,7 @@ v2 improvements over the original hardcoded version:
 """
 
 import re
-from backend.services.dataset_loader import ALL_SKILLS, SKILL_CATEGORIES, DATASET_ALIASES
+from services.dataset_loader import ALL_SKILLS, SKILL_CATEGORIES, DATASET_ALIASES
 
 # ── Legacy aliases kept for backward compatibility ────────────────────────────
 # Maps alias_lower -> canonical_lower that must already be in ALL_SKILLS.

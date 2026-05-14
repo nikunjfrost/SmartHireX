@@ -5,7 +5,7 @@ Uses job_roles.csv (via dataset_loader) to match a candidate's skills
 against 325 job roles and return ranked matches.
 """
 
-from backend.services.dataset_loader import JOB_ROLES, JOB_ROLE_SKILLS
+from services.dataset_loader import JOB_ROLES, JOB_ROLE_SKILLS
 
 
 def find_matching_roles(resume_skills: list, top_n: int = 5) -> list:

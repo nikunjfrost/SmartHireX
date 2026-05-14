@@ -10,9 +10,9 @@ v2 improvements:
 """
 
 import re
-from backend.services.extractor import extract_resume_text
-from backend.services.nlp_pipeline import extract_skills_and_keywords, group_skills_by_category
-from backend.services.job_matcher import find_matching_roles
+from services.extractor import extract_resume_text
+from services.nlp_pipeline import extract_skills_and_keywords, group_skills_by_category
+from services.job_matcher import find_matching_roles
 
 
 # ── Small helpers for structured resume field extraction ──────────────────────
