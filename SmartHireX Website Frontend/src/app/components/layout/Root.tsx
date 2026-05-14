@@ -107,7 +107,7 @@ export function Root() {
       const { error } = await supabase.auth.signInWithOAuth({
         provider: "google",
         options: {
-          redirectTo: "http://127.0.0.1:5000/",
+          redirectTo: window.location.origin,
           queryParams: { access_type: "offline", prompt: "consent" },
           scopes: "email profile",
         },
