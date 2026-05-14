@@ -84,7 +84,8 @@ export function ResumeScanner() {
     formData.append("jd_text", jdText);
 
     try {
-      const response = await fetch("http://127.0.0.1:5000/api/analyze-resume", {
+      const API_URL = import.meta.env.VITE_API_URL || "http://127.0.0.1:5000";
+      const response = await fetch(`${API_URL}/api/analyze-resume`, {
         method: "POST",
         body: formData,
       });
@@ -134,7 +135,8 @@ export function ResumeScanner() {
     setRankedJobs(null);
 
     try {
-      const response = await fetch("http://127.0.0.1:5000/api/compare-multiple-jds", {
+      const API_URL = import.meta.env.VITE_API_URL || "http://127.0.0.1:5000";
+      const response = await fetch(`${API_URL}/api/compare-multiple-jds`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

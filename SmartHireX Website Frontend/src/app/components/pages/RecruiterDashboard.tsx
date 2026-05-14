@@ -45,7 +45,8 @@ export function RecruiterDashboard() {
     // Fetch candidates from backend
     const fetchCandidates = async () => {
       try {
-        const response = await fetch("http://127.0.0.1:5000/api/candidates");
+        const API_URL = import.meta.env.VITE_API_URL || "http://127.0.0.1:5000";
+        const response = await fetch(`${API_URL}/api/candidates`);
         if (!response.ok) throw new Error("Failed to fetch candidates");
         const data = await response.json();
         
@@ -84,7 +85,8 @@ export function RecruiterDashboard() {
 
   const handleAccept = async (id: string) => {
     try {
-      await fetch(`http://127.0.0.1:5000/api/candidates/${id}/status`, {
+      const API_URL = import.meta.env.VITE_API_URL || "http://127.0.0.1:5000";
+      await fetch(`${API_URL}/api/candidates/${id}/status`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ status: "accepted" })
@@ -97,7 +99,8 @@ export function RecruiterDashboard() {
 
   const handleReject = async (id: string) => {
     try {
-      await fetch(`http://127.0.0.1:5000/api/candidates/${id}/status`, {
+      const API_URL = import.meta.env.VITE_API_URL || "http://127.0.0.1:5000";
+      await fetch(`${API_URL}/api/candidates/${id}/status`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ status: "rejected" })
@@ -113,7 +116,8 @@ export function RecruiterDashboard() {
   useEffect(() => {
     if (activeTab === "analytics") {
       setIsLoadingAnalytics(true);
-      fetch("http://127.0.0.1:5000/api/analytics/recruiter")
+      const API_URL = import.meta.env.VITE_API_URL || "http://127.0.0.1:5000";
+      fetch(`${API_URL}/api/analytics/recruiter`)
         .then(res => res.json())
         .then(data => {
           if (data.status === "success") {
