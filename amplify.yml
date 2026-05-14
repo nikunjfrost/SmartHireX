@@ -3,20 +3,16 @@ frontend:
   phases:
     preBuild:
       commands:
-        - if [ -d "SmartHireX Website Frontend" ]; then cd "SmartHireX Website Frontend"; fi
-        - echo "$(pwd)" > /tmp/original_dir
-        - rm -rf /tmp/safe_build && cp -R . /tmp/safe_build
-        - cd /tmp/safe_build
+        - cd frontend
         - npm install --no-audit
     build:
       commands:
-        - cd /tmp/safe_build
+        - cd frontend
         - npm run build
-        - cp -R dist "$(cat /tmp/original_dir)/dist"
   artifacts:
-    baseDirectory: dist
+    baseDirectory: frontend/dist
     files:
       - "**/*"
   cache:
     paths:
-      - "/tmp/safe_build/node_modules/**/*"
+      - frontend/node_modules/**/*
