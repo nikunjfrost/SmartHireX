@@ -3,18 +3,16 @@ frontend:
   phases:
     preBuild:
       commands:
-        - ls -la
-        - pwd
-        - if [ -d "frontend" ]; then cd frontend; fi
+        - cd frontend
         - npm install --no-audit
     build:
       commands:
-        - if [ -d "frontend" ]; then cd frontend; fi
+        - cd frontend
         - npm run build
   artifacts:
-    baseDirectory: dist
+    baseDirectory: frontend/dist
     files:
       - "**/*"
   cache:
     paths:
-      - node_modules/**/*
+      - frontend/node_modules/**/*
