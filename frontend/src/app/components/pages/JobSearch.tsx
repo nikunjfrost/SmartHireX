@@ -21,7 +21,7 @@ interface Job {
 const JOBS_PER_PAGE = 20;
 
 // ── Spotlight-glow job card ───────────────────────────────────────────────────
-function JobCard({ job, onSave }: { job: Job; onSave: (job: Job) => void }) {
+function JobCard({ job, onSave }: { job: Job; onSave: (job: Job) => void | Promise<void> }) {
   const cardRef = useRef<HTMLDivElement>(null);
   const [glow, setGlow] = useState({ x: 50, y: 50, opacity: 0 });
 
