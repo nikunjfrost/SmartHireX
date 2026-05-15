@@ -8,7 +8,7 @@ from routes.candidates import candidates_bp
 from routes.builder import builder_bp
 
 app = Flask(__name__)
-CORS(app)
+CORS(app, resources={r"/api/*": {"origins": "*"}}, supports_credentials=True)
 
 # Configure upload folder
 UPLOAD_FOLDER = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'uploads')
@@ -28,4 +28,4 @@ def health_check():
     return {"status": "healthy", "service": "SmartHireX API"}, 200
 
 if __name__ == '__main__':
-    app.run(debug=True, port=5000)
+    app.run(debug=True, host='0.0.0.0', port=5000)
