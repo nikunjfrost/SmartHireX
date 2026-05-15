@@ -45,7 +45,10 @@ export function RecruiterDashboard() {
     // Fetch candidates from backend
     const fetchCandidates = async () => {
       try {
-        const API_URL = import.meta.env.VITE_API_URL || "http://127.0.0.1:5000";
+        let API_URL = import.meta.env.VITE_API_URL || "https://smarthirex-backend.onrender.com";
+        // Remove trailing slash if present
+        API_URL = API_URL.replace(/\/$/, "");
+
         const response = await fetch(`${API_URL}/api/candidates`);
         if (!response.ok) throw new Error("Failed to fetch candidates");
         const data = await response.json();
@@ -85,7 +88,10 @@ export function RecruiterDashboard() {
 
   const handleAccept = async (id: string) => {
     try {
-      const API_URL = import.meta.env.VITE_API_URL || "http://127.0.0.1:5000";
+      let API_URL = import.meta.env.VITE_API_URL || "https://smarthirex-backend.onrender.com";
+      // Remove trailing slash if present
+      API_URL = API_URL.replace(/\/$/, "");
+
       await fetch(`${API_URL}/api/candidates/${id}/status`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
@@ -99,7 +105,10 @@ export function RecruiterDashboard() {
 
   const handleReject = async (id: string) => {
     try {
-      const API_URL = import.meta.env.VITE_API_URL || "http://127.0.0.1:5000";
+      let API_URL = import.meta.env.VITE_API_URL || "https://smarthirex-backend.onrender.com";
+      // Remove trailing slash if present
+      API_URL = API_URL.replace(/\/$/, "");
+
       await fetch(`${API_URL}/api/candidates/${id}/status`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
@@ -116,7 +125,10 @@ export function RecruiterDashboard() {
   useEffect(() => {
     if (activeTab === "analytics") {
       setIsLoadingAnalytics(true);
-      const API_URL = import.meta.env.VITE_API_URL || "http://127.0.0.1:5000";
+      let API_URL = import.meta.env.VITE_API_URL || "https://smarthirex-backend.onrender.com";
+      // Remove trailing slash if present
+      API_URL = API_URL.replace(/\/$/, "");
+
       fetch(`${API_URL}/api/analytics/recruiter`)
         .then(res => res.json())
         .then(data => {

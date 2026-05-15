@@ -110,7 +110,8 @@ export function ResumeBuilder() {
         desiredRole
       };
 
-      const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
+      let API_URL = import.meta.env.VITE_API_URL || "https://smarthirex-backend.onrender.com";
+      API_URL = API_URL.replace(/\/$/, "");
       const response = await fetch(`${API_URL}/api/builder/optimize`, {
         method: "POST",
         headers: {
@@ -147,7 +148,8 @@ export function ResumeBuilder() {
     setAiReview(null);
     try {
       const payload = { personalInfo, summary, experience, education, skills, desiredRole };
-      const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
+      let API_URL = import.meta.env.VITE_API_URL || "https://smarthirex-backend.onrender.com";
+      API_URL = API_URL.replace(/\/$/, "");
       const response = await fetch(`${API_URL}/api/builder/review`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },

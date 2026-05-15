@@ -151,8 +151,12 @@ export function JobSearch() {
     setIsLoading(true);
     setCurrentPage(1);
     try {
+      let API_URL = import.meta.env.VITE_API_URL || "https://smarthirex-backend.onrender.com";
+      // Remove trailing slash if present
+      API_URL = API_URL.replace(/\/$/, "");
+      
       const response = await fetch(
-        `http://localhost:5000/api/jobs/web-search?query=${encodeURIComponent(query)}`
+        `${API_URL}/api/jobs/web-search?query=${encodeURIComponent(query)}`
       );
       const data = await response.json();
       if (data.status === "success") {

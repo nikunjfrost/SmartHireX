@@ -84,7 +84,10 @@ export function ResumeScanner() {
     formData.append("jd_text", jdText);
 
     try {
-      const API_URL = import.meta.env.VITE_API_URL || "http://127.0.0.1:5000";
+      let API_URL = import.meta.env.VITE_API_URL || "https://smarthirex-backend.onrender.com";
+      // Remove trailing slash if present
+      API_URL = API_URL.replace(/\/$/, "");
+
       const response = await fetch(`${API_URL}/api/analyze-resume`, {
         method: "POST",
         body: formData,
@@ -135,7 +138,10 @@ export function ResumeScanner() {
     setRankedJobs(null);
 
     try {
-      const API_URL = import.meta.env.VITE_API_URL || "http://127.0.0.1:5000";
+      let API_URL = import.meta.env.VITE_API_URL || "https://smarthirex-backend.onrender.com";
+      // Remove trailing slash if present
+      API_URL = API_URL.replace(/\/$/, "");
+
       const response = await fetch(`${API_URL}/api/compare-multiple-jds`, {
         method: "POST",
         headers: {
